@@ -1,4 +1,4 @@
-export class Transportadora{
+export class Transportadora {
     email: string;
     nome: string;
     empresa: string;
