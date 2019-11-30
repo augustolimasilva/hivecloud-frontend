@@ -1,12 +1,80 @@
 <title>Cadastro</title>
-<form>
+<form class="form">
   <div class="form-group">
     <div class="container">
       <div class="row">
         <div class="col-sm">
           <label class="control-label" for="email">E-mail:</label>
-          <input type="text" ng-model="fornecedor.email" class="form-control" name="email" id="email">
+          <input type="email" ng-model="fornecedor.email" class="form-control" name="email" id="email">
         </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="nome">Nome:</label>
+            <input type="text" ng-model="fornecedor.nome" class="form-control" name="nome" id="nome">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="empresa">Empresa:</label>
+            <input type="text" ng-model="fornecedor.empresa" class="form-control" name="empresa" id="empresa">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="telefone">Telefone:</label>
+            <input type="text" ng-model="fornecedor.telefone" class="form-control" name="telefone" id="telefone">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="celular">Celular:</label>
+            <input type="text" ng-model="fornecedor.celular" class="form-control" name="celular" id="celular">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="telefone">Telefone:</label>
+            <input type="text" ng-model="fornecedor.telefone" class="form-control" name="telefone" id="telefone">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="modalidade">Modalidade:</label>
+            <input type="text" ng-model="fornecedor.modalidade" class="form-control" name="modalidade" id="modalidade">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="cep">Cep:</label>
+            <input #cep type="text" ng-model="fornecedor.cep" (keydown.Tab)="pesquisaCep(cep.value)" [textMask]="{mask: cepMascara, placeholderChar: '\u2000', guide: false }" class="form-control" name="cep" id="cep">
+            <label class="control-label" for="estado">Estado:</label>
+            <input type="text" ng-model="fornecedor.estado" [(ngModel)]="buscaEndereco.uf" class="form-control" name="estado" id="estado">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="cidade">Cidade:</label>
+            <input type="text" ng-model="fornecedor.cidade" [(ngModel)]="buscaEndereco.localidade" class="form-control" name="cidade" id="cidade">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="bairro">Bairro:</label>
+            <input type="text" ng-model="fornecedor.bairro" [(ngModel)]="buscaEndereco.bairro" class="form-control" name="bairro" id="bairro">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="rua">Rua/Avenida:</label>
+            <input #logradouro type="text" ng-model="fornecedor.logradouro" [(ngModel)]="buscaEndereco.logradouro" class="form-control" name="rua" id="rua">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm">
+            <label class="control-label" for="numero">Número:</label>
+            <input type="text" ng-model="fornecedor.numero" class="form-control" name="numero" id="numero">
+          </div>
       </div>
     </div>
   </div>

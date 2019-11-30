@@ -1,5 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
+import { ToastrModule } from 'ngx-toastr';
+import { TextMaskModule } from 'angular2-text-mask';
+
+import { ViaCepService } from '../service/viacep.service';
 
 import { AppComponent } from './app.component';
 import { CadastroComponent } from '../crud/cadastro/cadastro.component';
@@ -14,9 +22,16 @@ import { ManutencaoComponent } from '../principal/manutencao/manutencao.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    TextMaskModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    ViaCepService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
