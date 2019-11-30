@@ -11,18 +11,18 @@ export class TransportadoraService {
     constructor (private httpClient: HttpClient) {}
 
     inserirTransportadora(transportadora: Transportadora): Observable<Transportadora> {
-        return this.httpClient.post<Transportadora>('${this.url}', transportadora);
+        return this.httpClient.post<Transportadora>(`${this.url}`, transportadora);
     }
 
     alterarTransportadora(id: number, transportadora: Transportadora): Observable<Transportadora> {
-        return this.httpClient.put<Transportadora>('${this.url}/${id}', transportadora);
+        return this.httpClient.put<Transportadora>(`${this.url}/${id}`, transportadora);
     }
 
     listarTransportadoras(): Observable<Transportadora> {
-        return this.httpClient.get<Transportadora>('${this.url}');
+        return this.httpClient.get<Transportadora>(`${this.url}`);
     }
 
-    excluirPorId(id: number): Observable<Transportadora>{
-        return this.httpClient.delete<Transportadora>('${this.url}/${id}');
+    excluirPorId(id: number): Observable<Transportadora> {
+        return this.httpClient.delete<Transportadora>(`${this.url}/${id}`);
     }
 }

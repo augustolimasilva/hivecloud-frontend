@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TextMaskModule } from 'angular2-text-mask';
 
 import { ViaCepService } from '../service/viacep.service';
+import { TransportadoraService } from '../service/transportadora.service';
 
 import { AppComponent } from './app.component';
 import { CadastroComponent } from '../crud/cadastro/cadastro.component';
@@ -30,7 +31,8 @@ import { ManutencaoComponent } from '../principal/manutencao/manutencao.componen
     FormsModule
   ],
   providers: [
-    ViaCepService
+    ViaCepService,
+    TransportadoraService
   ],
   bootstrap: [AppComponent]
 })
