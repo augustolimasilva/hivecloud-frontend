@@ -1,4 +1,5 @@
 export class Transportadora {
+    id: number;
     email: string;
     nome: string;
     empresa: string;
