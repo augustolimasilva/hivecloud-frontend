@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy  } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import { ViaCepService } from '../../service/viacep.service';
 import { TransportadoraService } from '../../service/transportadora.service';
+import { ActivatedRoute } from '@angular/router';
 
 import { Endereco } from 'src/model/endereco';
 import { Transportadora} from 'src/model/Transportadora';
@@ -12,22 +13,40 @@ import { Transportadora} from 'src/model/Transportadora';
   styleUrls: ['./cadastro.component.css']
 })
 
-export class CadastroComponent implements OnInit {
+export class CadastroComponent implements OnInit, OnDestroy {
 
   cepMascara = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   telefoneMascara = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   celularMascara = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   cnpjMascara = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
+  sub;
+  id;
+
   transportadora: Transportadora = new Transportadora();
   buscaEndereco: Endereco = new Endereco();
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sub = this.activatedRoute.paramMap.subscribe(params => {
+      this.id = params.get('id');
+      this.transportadoraService.pesquisarPorId(this.id).subscribe(
+        data => {
+          this.transportadora = data;
+        }
+      );
+       // this.product=products.find(p => p.productID==this.id);
+   });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   constructor(
     private toastr: ToastrService,
     private viaCepService: ViaCepService,
-    private transportadoraService: TransportadoraService
+    private transportadoraService: TransportadoraService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   pesquisaCep(cep: string) {

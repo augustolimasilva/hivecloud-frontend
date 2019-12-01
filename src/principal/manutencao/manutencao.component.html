@@ -4,19 +4,21 @@
       Transportadoras | <u>...</u>
     </div>
       <div class="col-sm col-md-4 alinha-botao">
-        <button routerLink="/cadastro" type="button" class="btn btn-success altera-fontes-bt">Cadastre sua transportadora</button>
+        <button [routerLink]="['/cadastro']" type="button" class="btn btn-success altera-fontes-bt">Cadastre sua transportadora</button>
       </div>
     </div>
     <hr class="linha"/>
   <div class="row">
     <div class="col-sm col-md-4"> 
-
+      <!--PESQUISA-->
     </div> 
     <div class="col-sm col-md-8">
       <div class="col-sm" *ngFor="let transportadora of transportadoras">
           <div class="col-sm bordas-div">
             <div>
-              <a routerLink="/cadastro">{{transportadora.nome}}</a>
+              <a [routerLink]="['/cadastro', transportadora.id]">
+                {{transportadora.nome}}
+              </a>
               {{transportadora.telefone}}
               {{transportadora.celular}}
             </div>
@@ -25,7 +27,7 @@
               {{transportadora.email}}
             </div>
             <div>
-              {{transportadora.whatsapp}}
+              Fale agora: {{transportadora.whatsapp}}
             </div>
           </div>
           <br>

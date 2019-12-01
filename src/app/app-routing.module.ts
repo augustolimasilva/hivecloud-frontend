@@ -5,6 +5,7 @@ import { ManutencaoComponent} from '../principal/manutencao/manutencao.component
 
 const routes: Routes = [
   {path : 'cadastro', component : CadastroComponent},
+  {path : 'cadastro/:id', component : CadastroComponent},
   {path: '', component : ManutencaoComponent},
 ];
 

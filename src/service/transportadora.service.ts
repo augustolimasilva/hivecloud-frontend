@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Transportadora } from '../model/transportadora';
+import { ReturnStatement } from '@angular/compiler';
 
 @Injectable()
 export class TransportadoraService {
@@ -24,5 +25,9 @@ export class TransportadoraService {
 
     excluirPorId(id: number): Observable<Transportadora> {
         return this.httpClient.delete<Transportadora>(`${this.url}/${id}`);
+    }
+
+    pesquisarPorId(id: number): Observable<Transportadora> {
+        return this.httpClient.get<Transportadora>(`${this.url}/${id}`);
     }
 }

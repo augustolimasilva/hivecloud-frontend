@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TransportadoraService } from '../../service/transportadora.service';
 
 import { Transportadora } from '../../model/transportadora';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manutencao',
