@@ -5,7 +5,6 @@ import { TransportadoraService } from '../../service/transportadora.service';
 
 import { Endereco } from 'src/model/endereco';
 import { Transportadora} from 'src/model/Transportadora';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cadastro',
@@ -22,7 +21,7 @@ export class CadastroComponent implements OnInit {
 
   transportadora: Transportadora = new Transportadora();
   buscaEndereco: Endereco = new Endereco();
-  
+
   ngOnInit() {}
 
   constructor(

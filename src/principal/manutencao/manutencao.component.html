@@ -1,15 +1,21 @@
 <div class="container">
-    <div class="row">
-      <div class="col-sm altera-fontes">
-        Transportadoras | <u>...</u>
-      </div>
-      <div class="col-sm">
-      </div>
-      <div class="col-sm">
-      </div>
-      <div class="col-sm">
+  <div class="row">
+    <div class="col-sm altera-fontes col-md-8">
+      Transportadoras | <u>...</u>
+    </div>
+      <div class="col-sm col-md-4 alinha-botao">
         <button routerLink="/cadastro" type="button" class="btn btn-success altera-fontes-bt">Cadastre sua transportadora</button>
       </div>
     </div>
     <hr class="linha"/>
+  <div class="row">
+    <div class="col-sm col-md-4"> 
+
+    </div> 
+    <div class="col-sm col-md-8">
+      <div class="col-sm" *ngFor="let transportadora of transportadoras">
+        <a routerLink="/cadastro">{{transportadora.nome}}</a>
+      </div>  
+    </div> 
   </div>
+</div>

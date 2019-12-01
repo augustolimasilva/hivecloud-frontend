@@ -18,8 +18,8 @@ export class TransportadoraService {
         return this.httpClient.put<Transportadora>(`${this.url}/${id}`, transportadora);
     }
 
-    listarTransportadoras(): Observable<Transportadora> {
-        return this.httpClient.get<Transportadora>(`${this.url}`);
+    listarTransportadoras(): Observable<Transportadora[]> {
+        return this.httpClient.get<Transportadora[]>(`${this.url}`);
     }
 
     excluirPorId(id: number): Observable<Transportadora> {
