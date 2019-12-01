@@ -20,3 +20,7 @@
   .alinha-botao{
    text-align: right;
   }
+
+  .bordas-div{
+   border: solid 1px black;
+  }

@@ -14,8 +14,22 @@
     </div> 
     <div class="col-sm col-md-8">
       <div class="col-sm" *ngFor="let transportadora of transportadoras">
-        <a routerLink="/cadastro">{{transportadora.nome}}</a>
-      </div>  
+          <div class="col-sm bordas-div">
+            <div>
+              <a routerLink="/cadastro">{{transportadora.nome}}</a>
+              {{transportadora.telefone}}
+              {{transportadora.celular}}
+            </div>
+            <div>
+              {{transportadora.empresa}}
+              {{transportadora.email}}
+            </div>
+            <div>
+              {{transportadora.whatsapp}}
+            </div>
+          </div>
+          <br>
+      </div>
     </div> 
   </div>
 </div>
