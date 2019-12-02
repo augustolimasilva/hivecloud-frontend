@@ -11,6 +11,7 @@ import { Transportadora } from '../../model/transportadora';
 export class ManutencaoComponent implements OnInit {
 
   transportadoras: Transportadora[];
+  transportadorasOriginal: Transportadora[];
 
   constructor(
     private transportadoraService: TransportadoraService
@@ -24,8 +25,18 @@ export class ManutencaoComponent implements OnInit {
     this.transportadoraService.listarTransportadoras().subscribe(
       data => {
         this.transportadoras = data;
+        this.transportadorasOriginal = data;
       }
     );
   }
 
+  onSearch(value) {
+    if (value && value.length >= 1) {
+      this.transportadoras = this.transportadoras.filter(t => {
+        return t.nome.toUpperCase().includes(value.toUpperCase());
+      });
+    } else {
+      this.transportadoras = this.transportadorasOriginal;
+    }
+  }
 }
