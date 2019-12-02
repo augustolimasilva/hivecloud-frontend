@@ -25,7 +25,9 @@
     "core-js": "^2.5.4",
     "engine.io-client": "^3.4.0",
     "ng-bootstrap": "^1.6.3",
-    "ngx-toastr": "^10.1.0",
+    "ngx-toastr": "^10.2.0",
+    "primeicons": "^2.0.0",
+    "primeng": "^6.1.6",
     "rxjs": "6.0.0",
     "toastr": "^2.1.4",
     "zone.js": "~0.8.26"

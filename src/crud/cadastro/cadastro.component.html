@@ -95,7 +95,9 @@
       </div>
       <div class="row" *ngIf='transportadora.id ? true : false'>
         <div class="col-sm">
-          <button type="submit" class="btn btn-success" (click)="atualizarTransportadora(transportadora.id)">Atualizar</button>
+          <button type="submit" pButton class="btn btn-success" (click)="atualizarTransportadora(transportadora.id)">Atualizar</button>
+          <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" [style]="{width: '50vw'}"></p-confirmDialog>
+          <button type="submit" (click)="confirm1()" class="ui-button-danger" pButton label="Deletar"></button>
         </div>
       </div>
     </div>

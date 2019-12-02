@@ -1,8 +1,11 @@
-import { Component, OnInit, Input, OnDestroy  } from '@angular/core';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ViaCepService } from '../../service/viacep.service';
 import { TransportadoraService } from '../../service/transportadora.service';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { Message } from 'primeng/api';
+import { Router } from '@angular/router';
 
 import { Endereco } from 'src/model/endereco';
 import { Transportadora} from 'src/model/Transportadora';
@@ -22,6 +25,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
 
   sub;
   id;
+  msgs: Message[] = [];
 
   transportadora: Transportadora = new Transportadora();
   buscaEndereco: Endereco = new Endereco();
@@ -45,7 +49,9 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private viaCepService: ViaCepService,
     private transportadoraService: TransportadoraService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) { }
 
   pesquisaCep(cep: string) {
@@ -161,6 +167,30 @@ export class CadastroComponent implements OnInit, OnDestroy {
         }
       );
     }
+  }
+
+  confirm1() {
+    this.confirmationService.confirm({
+        message: 'Deseja realmente excluir o Fornecedor?',
+        header: 'Confirmação',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.excluirTransportadora();
+        }
+    });
+  }
+
+  excluirTransportadora() {
+    this.transportadoraService.excluirPorId(this.transportadora.id)
+    .subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['/', '/']);
+      }, error => {
+        console.log(error);
+        this.toastr.error(error.error.errorMessage, 'Erro');
+      }
+    );
   }
 }
 

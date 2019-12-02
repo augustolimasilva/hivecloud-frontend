@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Transportadora } from '../model/transportadora';
-import { ReturnStatement } from '@angular/compiler';
 
 @Injectable()
 export class TransportadoraService {

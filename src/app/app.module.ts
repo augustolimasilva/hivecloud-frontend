@@ -14,6 +14,8 @@ import { AppComponent } from './app.component';
 import { CadastroComponent } from '../crud/cadastro/cadastro.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ManutencaoComponent } from '../principal/manutencao/manutencao.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule, GrowlModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,14 @@ import { ManutencaoComponent } from '../principal/manutencao/manutencao.componen
     TextMaskModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ConfirmDialogModule,
+    GrowlModule
   ],
   providers: [
     ViaCepService,
-    TransportadoraService
+    TransportadoraService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
