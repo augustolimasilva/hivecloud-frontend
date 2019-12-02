@@ -15,7 +15,7 @@ import { CadastroComponent } from '../crud/cadastro/cadastro.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ManutencaoComponent } from '../principal/manutencao/manutencao.component';
 import { ConfirmationService } from 'primeng/api';
-import { ConfirmDialogModule, GrowlModule } from 'primeng/primeng';
+import { ConfirmDialogModule, GrowlModule, CheckboxModule } from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { ConfirmDialogModule, GrowlModule } from 'primeng/primeng';
     ToastrModule.forRoot(),
     FormsModule,
     ConfirmDialogModule,
-    GrowlModule
+    GrowlModule,
+    CheckboxModule
   ],
   providers: [
     ViaCepService,

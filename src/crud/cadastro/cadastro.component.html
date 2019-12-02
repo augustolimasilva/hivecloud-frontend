@@ -82,20 +82,20 @@
       </div>
       <br>
       <div class="row" *ngIf='transportadora.id ? false : true'>
-          <div class="col-md-6">
-            <label>
-              Eu aceito os termos de serviço <input #snAceitouTermos required type="checkbox" class="form-control alinha-check" name="snAceitouTermos" value="snAceitouTermos" id="snAceitouTermos"> 
-            </label>
+          <div class="ui-g-12 alinha-check">
+            <p-checkbox #snAceitouTermos name="snAceitouTermos" value="snAceitouTermos" label="Eu aceito os termos de serviço" inputId="snAceitouTermos"></p-checkbox>
           </div>
       </div>
       <div class="row" *ngIf='transportadora.id ? false : true'>
-        <div class="col-sm">
+        <div class="col-sm altera-fontes-bt altera-posicao-bt-center">
           <button type="submit" class="btn btn-success" (click)="salvarTransportadora()">Cadastrar-se agora!</button>
         </div>
       </div>
       <div class="row" *ngIf='transportadora.id ? true : false'>
-        <div class="col-sm">
-          <button type="submit" pButton class="btn btn-success" (click)="atualizarTransportadora(transportadora.id)">Atualizar</button>
+        <div class="col-sm-6 altera-posicao-bt-right altera-fontes-bt">
+          <button type="submit" pButton class="ui-button-success" (click)="atualizarTransportadora(transportadora.id)" label="Atualizar"></button>
+        </div>
+        <div class="col-sm-6 altera-fontes-bt">  
           <p-confirmDialog acceptLabel="Sim" rejectLabel="Não" [style]="{width: '50vw'}"></p-confirmDialog>
           <button type="submit" (click)="confirm1()" class="ui-button-danger" pButton label="Deletar"></button>
         </div>

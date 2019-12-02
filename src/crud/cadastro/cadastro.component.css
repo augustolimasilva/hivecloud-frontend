@@ -1,5 +1,19 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 .alinha-check{
-    text-align: right;
+    text-align: center;
 }
+
+.altera-fontes-bt{
+    font-style: normal; 
+    font-size: 1.0em;
+    font-family: "Calibri";
+ }
+
+ .altera-posicao-bt-right{
+    text-align: right;
+ }
+
+ .altera-posicao-bt-center{
+    text-align: center;
+ }
