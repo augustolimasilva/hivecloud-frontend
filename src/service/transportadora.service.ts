@@ -15,7 +15,7 @@ export class TransportadoraService {
         return this.httpClient.post<Transportadora>(`${this.url}`, transportadora);
     }
 
-    alterarTransportadora(id: number, transportadora: Transportadora): Observable<Transportadora> {
+    alterarTransportadora(transportadora: Transportadora, id: number): Observable<Transportadora> {
         return this.httpClient.put<Transportadora>(`${this.url}/${id}`, transportadora);
     }
 

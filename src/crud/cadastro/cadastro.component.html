@@ -80,14 +80,22 @@
             <input #numero type="text" required [(ngModel)]="transportadora.numero" class="form-control" name="numero" id="numero">
           </div>
       </div>
-      <div class="row">
-          <div class="col-sm">
-            <input #snAceitouTermos required type="checkbox" class="form-control" name="snAceitouTermos" value="snAceitouTermos" id="snAceitouTermos"> Cadastrar-se agora!<br> 
+      <br>
+      <div class="row" *ngIf='transportadora.id ? false : true'>
+          <div class="col-md-6">
+            <label>
+              Eu aceito os termos de serviço <input #snAceitouTermos required type="checkbox" class="form-control alinha-check" name="snAceitouTermos" value="snAceitouTermos" id="snAceitouTermos"> 
+            </label>
           </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf='transportadora.id ? false : true'>
         <div class="col-sm">
-          <button type="submit" class="btn btn-success" (click)="salvarTransportadora()">Salvar</button>
+          <button type="submit" class="btn btn-success" (click)="salvarTransportadora()">Cadastrar-se agora!</button>
+        </div>
+      </div>
+      <div class="row" *ngIf='transportadora.id ? true : false'>
+        <div class="col-sm">
+          <button type="submit" class="btn btn-success" (click)="atualizarTransportadora(transportadora.id)">Atualizar</button>
         </div>
       </div>
     </div>

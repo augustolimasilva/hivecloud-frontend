@@ -34,7 +34,6 @@ export class CadastroComponent implements OnInit, OnDestroy {
           this.transportadora = data;
         }
       );
-       // this.product=products.find(p => p.productID==this.id);
    });
   }
 
@@ -111,18 +110,10 @@ export class CadastroComponent implements OnInit, OnDestroy {
   }
 
   formataNumeros() {
-    this.transportadora.telefone = this.transportadora.telefone.replace('-', '');
-    this.transportadora.telefone = this.transportadora.telefone.replace('(', '');
-    this.transportadora.telefone = this.transportadora.telefone.replace(')', '');
-    this.transportadora.celular = this.transportadora.celular.replace('-', '');
-    this.transportadora.celular = this.transportadora.celular.replace('(', '');
-    this.transportadora.celular = this.transportadora.celular.replace(')', '');
-    this.transportadora.whatsapp = this.transportadora.whatsapp.replace('-', '');
-    this.transportadora.whatsapp = this.transportadora.whatsapp.replace('(', '');
-    this.transportadora.whatsapp = this.transportadora.whatsapp.replace(')', '');
-    this.transportadora.empresa = this.transportadora.empresa.replace('/', '');
-    this.transportadora.empresa = this.transportadora.empresa.replace('-', '');
-    this.transportadora.empresa = this.transportadora.empresa.replace('.', '');
+    this.transportadora.telefone = this.transportadora.telefone.replace(/[^\d]+/g, '');
+    this.transportadora.celular = this.transportadora.celular.replace(/[^\d]+/g, '');
+    this.transportadora.whatsapp = this.transportadora.whatsapp.replace(/[^\d]+/g, '');
+    this.transportadora.empresa = this.transportadora.empresa.replace(/[^\d]+/g, '');
   }
 
   formataCep() {
@@ -138,15 +129,38 @@ export class CadastroComponent implements OnInit, OnDestroy {
       isDone = true;
     }
 
-    const element = document.getElementById('snAceitouTermos') as HTMLInputElement;
-    if (element.checked) {
-      this.transportadora.snAceitouTermos = 'S';
-      isDone = true;
-    } else {
-      isDone = false;
-      this.toastr.error('É necessário aceitar os termos, para salvar.', 'Erro');
+    if (this.transportadora.id == null) {
+      const element = document.getElementById('snAceitouTermos') as HTMLInputElement;
+      if (element.checked) {
+        this.transportadora.snAceitouTermos = 'S';
+        isDone = true;
+      } else {
+        isDone = false;
+        this.toastr.error('É necessário aceitar os termos, para salvar.', 'Erro');
+      }
     }
 
     return isDone;
   }
+
+  atualizarTransportadora(id: number) {
+    this.formataCep();
+    this.formataNumeros();
+    if (this.validaCampos()) {
+      this.transportadoraService.alterarTransportadora(this.transportadora, id)
+      .subscribe(
+        data => {
+          if (data.id != null) {
+            console.log(data);
+            this.toastr.success('Transportadora alterada.', 'Sucesso');
+          }
+        },
+        error => {
+          console.log(error);
+          this.toastr.error(error.error.errorMessage, 'Erro');
+        }
+      );
+    }
+  }
 }
+
