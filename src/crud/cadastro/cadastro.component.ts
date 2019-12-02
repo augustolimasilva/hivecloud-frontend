@@ -33,11 +33,13 @@ export class CadastroComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.activatedRoute.paramMap.subscribe(params => {
       this.id = params.get('id');
-      this.transportadoraService.pesquisarPorId(this.id).subscribe(
-        data => {
-          this.transportadora = data;
-        }
-      );
+      if (this.id) {
+        this.transportadoraService.pesquisarPorId(this.id).subscribe(
+          data => {
+            this.transportadora = data;
+          }
+        );
+      }
    });
   }
 
