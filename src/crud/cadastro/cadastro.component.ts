@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ViaCepService } from '../../service/viacep.service';
 import { TransportadoraService } from '../../service/transportadora.service';
 import { ActivatedRoute } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Message } from 'primeng/api';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,8 @@ import { Transportadora} from 'src/model/Transportadora';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css']
+  styleUrls: ['./cadastro.component.css'],
+  providers: [MessageService]
 })
 
 export class CadastroComponent implements OnInit, OnDestroy {
@@ -53,7 +54,8 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private transportadoraService: TransportadoraService,
     private activatedRoute: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   pesquisaCep(cep: string) {
@@ -65,7 +67,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
           endereco => {
             if (endereco.erro === true) {
               this.buscaEndereco = undefined;
-              this.toastr.warning('Cep não encontrado', 'Erro');
+              alert('Cep não encontrado.');
             } else {
               this.buscaEndereco = endereco;
               this.transportadora.rua = this.buscaEndereco.logradouro;
@@ -75,12 +77,12 @@ export class CadastroComponent implements OnInit, OnDestroy {
             }
           },
           error => {
-            this.toastr.error('Error: ${error.message}.', 'Erro');
+            alert(error.message);
             this.buscaEndereco = undefined;
           }
         );
     } else {
-      this.toastr.error('Insira um cep válido.', 'Erro');
+      alert('Insira um cep válido.');
       this.buscaEndereco = undefined;
     }
   }
@@ -101,17 +103,15 @@ export class CadastroComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           if (data.id === null) {
-            console.log(data.id);
-            this.toastr.warning('Transportadora não cadastrada. Tente novamente.', 'Erro');
+            alert('Transportadora não cadastrada. Tente novamente.');
           } else {
-            console.log('sucesso');
-            this.toastr.success('Transportadora cadastrada.', 'Sucesso');
+            alert('Transportadora cadastrada.');
             this.transportadora = new Transportadora();
             this.buscaEndereco = new Endereco();
           }
         },
         error => {
-          this.toastr.error(error.error.errorMessage, 'Erro');
+          alert(error.error.errorMessage);
         }
       );
     }
@@ -132,7 +132,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
     let isDone = false;
     if (this.transportadora.empresa.length < 4) {
       isDone = false;
-      this.toastr.error('O nome da empresa não pode ter menos que 4 caracteres.', 'Erro');
+      alert('O nome da empresa não pode ter menos que 4 caracteres.');
     } else {
       isDone = true;
     }
@@ -144,7 +144,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
         isDone = true;
       } else {
         isDone = false;
-        this.toastr.error('É necessário aceitar os termos, para salvar.', 'Erro');
+        alert('É necessário aceitar os termos, para salvar.');
       }
     }
 
@@ -159,13 +159,12 @@ export class CadastroComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           if (data.id != null) {
-            console.log(data);
-            this.toastr.success('Transportadora alterada.', 'Sucesso');
+            alert('Transportadora alterada.');
           }
         },
         error => {
-          console.log(error);
-          this.toastr.error(error.error.errorMessage, 'Erro');
+          this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' });
+          alert(error.error.errorMessage);
         }
       );
     }
@@ -190,7 +189,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
         this.router.navigate(['/', '/']);
       }, error => {
         console.log(error);
-        this.toastr.error(error.error.errorMessage, 'Erro');
+        alert(error.error.errorMessage);
       }
     );
   }

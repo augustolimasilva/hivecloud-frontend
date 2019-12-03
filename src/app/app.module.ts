@@ -16,6 +16,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ManutencaoComponent } from '../principal/manutencao/manutencao.component';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule, GrowlModule, CheckboxModule } from 'primeng/primeng';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConfirmDialogModule, GrowlModule, CheckboxModule } from 'primeng/primen
     FormsModule,
     ConfirmDialogModule,
     GrowlModule,
-    CheckboxModule
+    CheckboxModule,
+    ToastModule
   ],
   providers: [
     ViaCepService,
