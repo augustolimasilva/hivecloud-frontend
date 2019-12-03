@@ -13,6 +13,8 @@ export class ManutencaoComponent implements OnInit {
   transportadoras: Transportadora[];
   transportadorasOriginal: Transportadora[];
 
+  telefoneMascara = ['(', /\d/, /\d/, ')', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
   constructor(
     private transportadoraService: TransportadoraService
   ) {}
